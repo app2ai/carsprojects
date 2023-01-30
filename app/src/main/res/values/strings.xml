@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Cars</string>
+    <string name="txt_cars">Cars</string>
+    <string name="offline_txt_msg">Oops, you are offline</string>
+</resources>
