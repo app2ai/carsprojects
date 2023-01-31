@@ -2,8 +2,9 @@ package com.sevenpeakssoftware.vishalr.repo
 
 import com.sevenpeakssoftware.vishalr.model.CarModel
 import com.sevenpeakssoftware.vishalr.model.CarUiModel
+import javax.inject.Inject
 
-class CarDataUseCase : DataConvertor<CarModel, CarUiModel> {
+class CarDataUseCase @Inject constructor() : DataConvertor<CarModel, CarUiModel> {
     override fun intoUiModel(dataClass: CarModel?): List<CarUiModel> {
         val listOfCar = mutableListOf<CarUiModel>()
         if (dataClass != null) {
