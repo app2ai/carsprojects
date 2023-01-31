@@ -73,10 +73,10 @@ dependencies {
     // Piccasso Image Lib
     implementation 'com.squareup.picasso:picasso:2.8'
 
-    // Dagger
+    // Dagger DI
     implementation 'com.google.dagger:dagger:2.42'
     kapt 'com.google.dagger:dagger-compiler:2.42'
 
-    // Work Manager
+    // Work Manager - not used
     implementation 'androidx.work:work-runtime-ktx:2.7.1'
 }

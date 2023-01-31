@@ -5,25 +5,26 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.sevenpeakssoftware.vishalr.model.CarUiModel
-import kotlinx.coroutines.CoroutineScope
 
+// Offline database
 @Database(entities = [CarUiModel::class], version = 1, exportSchema = false)
 abstract class CarOfflineRoomDatabase : RoomDatabase() {
 
     abstract fun carDao(): CarDbDao
 
-    companion object{
+    companion object {
         @Volatile
         private var INSTANCE: CarOfflineRoomDatabase? = null
 
         fun getDbInstance(
             context: Context
         ): CarOfflineRoomDatabase {
-            return INSTANCE ?: synchronized(this){
+            return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context,
                     CarOfflineRoomDatabase::class.java,
-                    "car_db")
+                    "car_db"
+                )
                     .fallbackToDestructiveMigration()
                     .build()
                 INSTANCE = instance

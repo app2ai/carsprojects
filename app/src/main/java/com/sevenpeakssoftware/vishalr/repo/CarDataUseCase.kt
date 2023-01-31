@@ -4,6 +4,7 @@ import com.sevenpeakssoftware.vishalr.model.CarModel
 import com.sevenpeakssoftware.vishalr.model.CarUiModel
 import javax.inject.Inject
 
+// This is responsible for converting api data to ui data
 class CarDataUseCase @Inject constructor() : DataConvertor<CarModel, CarUiModel> {
     override fun intoUiModel(dataClass: CarModel?): List<CarUiModel> {
         val listOfCar = mutableListOf<CarUiModel>()

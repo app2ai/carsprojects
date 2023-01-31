@@ -1,10 +1,8 @@
 package com.sevenpeakssoftware.vishalr.repo
 
 import com.sevenpeakssoftware.vishalr.db.CarDbDao
-import com.sevenpeakssoftware.vishalr.model.CarModel
 import com.sevenpeakssoftware.vishalr.model.CarUiModel
 import com.sevenpeakssoftware.vishalr.service.CarApiService
-import java.net.SocketTimeoutException
 import javax.inject.Inject
 
 class CarsRepository @Inject constructor(
@@ -12,17 +10,17 @@ class CarsRepository @Inject constructor(
     private val carUseCase: CarDataUseCase,
     private val carDao: CarDbDao
 ) {
-    suspend fun downloadListOfCar() : CarAPIResponse {
-        try {
+    suspend fun downloadListOfCar(): CarAPIResponse {
+        return try {
             val call = service.carsApi()
             if (call.isSuccessful) {
                 val cars = carUseCase.intoUiModel(call.body())
-                return ApiSuccess(cars)
+                ApiSuccess(cars)
             } else {
-                return ApiFailed
+                ApiFailed
             }
         } catch (sException: Exception) {
-            return SocketTimeout
+            SocketTimeout
         }
     }
 
@@ -37,7 +35,8 @@ class CarsRepository @Inject constructor(
     }
 }
 
+// API Response sealed status
 sealed class CarAPIResponse
-    data class ApiSuccess(val cars: List<CarUiModel>?): CarAPIResponse()
-    object ApiFailed: CarAPIResponse()
-    object SocketTimeout: CarAPIResponse()
+data class ApiSuccess(val cars: List<CarUiModel>?) : CarAPIResponse()
+object ApiFailed : CarAPIResponse()
+object SocketTimeout : CarAPIResponse()

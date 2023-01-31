@@ -9,7 +9,7 @@ import dagger.Provides
 class NetworkModule {
 
     @Provides
-    fun provideCarApiService() : CarApiService {
+    fun provideCarApiService(): CarApiService {
         return RetrofitClient.sportService
     }
 }

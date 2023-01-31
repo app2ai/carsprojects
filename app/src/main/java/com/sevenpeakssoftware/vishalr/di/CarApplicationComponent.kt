@@ -8,6 +8,7 @@ import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
+// App component dependency provider
 @Singleton
 @Component(modules = [NetworkModule::class, ViewModelModule::class, DatabaseModule::class])
 interface CarApplicationComponent {
@@ -17,6 +18,6 @@ interface CarApplicationComponent {
 
     @Component.Factory
     interface Factory {
-        fun create(@BindsInstance context: Context) : CarApplicationComponent
+        fun create(@BindsInstance context: Context): CarApplicationComponent
     }
 }
