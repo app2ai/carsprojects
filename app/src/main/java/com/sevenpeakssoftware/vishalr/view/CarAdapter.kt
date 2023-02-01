@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sevenpeakssoftware.vishalr.R
 import com.sevenpeakssoftware.vishalr.databinding.CarCardItemBinding
 import com.sevenpeakssoftware.vishalr.model.CarUiModel
+import com.sevenpeakssoftware.vishalr.utils.CarsUtils.dateFormatConversion
 import com.sevenpeakssoftware.vishalr.utils.Constant.BASE_URL
 import com.squareup.picasso.Picasso
 
@@ -33,7 +34,7 @@ class CarAdapter(private val cars: List<CarUiModel>) : RecyclerView.Adapter<CarA
         fun bindItem(carModel: CarUiModel) {
             itemBinding.txtCarTitle.text = carModel.title
             itemBinding.txtCarIngress.text = carModel.ingress
-            itemBinding.txtCarDate.text = carModel.dateTime
+            itemBinding.txtCarDate.text = dateFormatConversion(carModel.dateTime)
             Picasso.get()
                 .load(BASE_URL.plus("/").plus(carModel.image))
                 .fit()
